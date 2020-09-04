@@ -1,0 +1,91 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+#define lli long long int
+#define ulli unsigned long long int
+#define MOD 1000000007
+int stringToINT(string str){//implemented stoi fn STL
+    int p=1;
+    int ans=0;
+    for(int i=str.length()-1;i>=0;i--){
+        ans += (str[i]-'0')*p;
+        p=p*10;
+    }
+    return ans;
+}
+bool numericCompare(pair<string,string> p1, pair<string,string> p2){
+    //return stoi(p1.second) < stoi(p2.second);//inbuilt stoi STL
+    return stringToINT(p1.second) < stringToINT(p2.second);
+}
+
+bool lexicoCompare(pair<string,string> p1, pair<string,string> p2){
+    return p1.second < p2.second;// < operator is overloaded for strings
+}
+
+string extractStringAtKey(string str,int keyCol){
+    //below line extracts the first token only so we need to run a loop to extract all
+            char* ptr= strtok((char*)str.c_str(), " ");//arguments-> 1st: char arr containing all char of string
+                                                                //2nd: delimiter e.g space,comma,etc......
+            while(keyCol>1){
+                ptr= strtok(NULL, " ");
+                keyCol--;
+            }
+            return (string)ptr;//return ptr to the current token
+}
+int main()
+{
+
+            int n;
+            cin>>n;
+            //to read an extra \n from input
+            cin.get();
+            string arr[n];
+            //to read full string with spaces(delimiter)->getline method is used
+            for(int i=0;i<n;i++){
+                getline(cin,arr[i]);
+            }
+            int keyCol; string reversed; string compareType;
+            cin>>keyCol>>reversed>>compareType;
+
+            //extract all tokens from string and store them in separate array
+            pair<string,string> keys[1000];
+            for(int i=0;i<n;i++){
+                keys[i].first= arr[i];
+                keys[i].second= extractStringAtKey(arr[i],keyCol);
+            }
+
+//            for(int i=0;i<n;i++){
+//
+//                cout<<keys[i].second<<"->";
+//            }cout<<endl<<endl;
+
+
+            //sorting  keys array
+            if(compareType=="numeric")
+                sort(keys,keys+n,numericCompare);
+            else
+            sort(keys,keys+n,lexicoCompare);
+
+            //check reversal
+            if(reversed=="true"){
+                for(int i=0;i<n/2;i++){
+                    swap(keys[i],keys[n-i-1]);
+                }
+            }
+
+            //print
+            for(int i=0;i<n;i++){
+                cout<<keys[i].first<<endl;
+            }
+
+
+
+
+
+
+
+
+}
+
+
+
