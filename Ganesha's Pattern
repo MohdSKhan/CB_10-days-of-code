@@ -1,0 +1,65 @@
+
+#include<bits/stdc++.h>
+using namespace std;
+#define lli long long int
+#define ulli unsigned long long int
+#define MOD 1000000007
+
+int main()
+{
+           
+                int n;
+                cin>>n;
+
+                for(int row=1;row<=n;row++){
+                    if(row==1){
+                        cout<<"*";
+                        for(int sp=1;sp<=(n-3)/2;sp++){
+                            cout<<" ";
+                        }
+                        for(int col=1;col<=(n+1)/2;col++){
+                            cout<<"*";
+                        }
+                    }
+                    else if(row>1 and row< (n+1)/2){
+                        cout<<"*";
+                        for(int sp=1;sp<=(n-3)/2;sp++){
+                            cout<<" ";
+                        }
+                        cout<<"*";
+                    }
+                    else if(row== (n+1)/2){
+                        for(int col=1;col<=n;col++){
+                            cout<<"*";
+                        }
+                    }
+                    else if(row> (n+1)/2 and row<n){
+                        for(int sp=1;sp<=(n-1)/2;sp++){
+                            cout<<" ";
+                        }
+                        cout<<"*";
+                        for(int sp=1;sp<=(n-3)/2;sp++){
+                            cout<<" ";
+                        }
+                        cout<<"*";
+                    }
+                    else{
+                        for(int col=1;col<=(n+1)/2;col++){
+                            cout<<"*";
+                        }
+                        for(int sp=1;sp<=(n-3)/2;sp++){
+                            cout<<" ";
+                        }
+                        cout<<"*";
+
+                    }
+
+
+                    cout<<endl;
+                }
+                
+
+}
+
+
+
